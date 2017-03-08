@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block content %}
+    <div>     
+      <table id="myTable" class="table tablesorter" cellspacing="0" cellpadding="0" border="0" width="100%">
+		<thead>
+             <tr class="header">
+              <th style="width:5%;">Date</th>
+              <th style="width:5%;">action</th>
+              <th style="width:5%;">table</th>
+              <th style="width:5%;">object id</th>
+              <th style="width:5%;">user</th>
+            </tr>
+        </thead>
+        <tbody>
+
+              {% for AuditlogLogentry in all_log %}
+              <tr style="cursor:pointer" onMouseOver="HighLight(this);" onMouseOut="UnHighLight(this);" onclick="Select(this);">
+                <td>{{ AuditlogLogentry.timestamp|date:"Y-m-d h:m:s" }}</td>
+                <td>{{ AuditlogLogentry.action.action_name }}</td>
+                <td>{{ AuditlogLogentry.content_type.model }}</td>
+                <td>{{ AuditlogLogentry.object_pk }}</td>
+                <td>{{ AuditlogLogentry.actor.username }}</td>
+              {% endfor %}
+               </tr>
+        </tbody>
+	</table>
+      </div>
+<script type="text/javascript">
+    $(document).ready(function () {
+    var table = $('#table').DataTable();
+
+    $('#table tbody').on('click', 'tr', function () {
+        $(this).toggleClass('selected');
+    });
+
+    $('#edit_button').click(function () {
+        var ids = $.map(table.rows('.selected').data(), function (item) {
+            return item[0]
+        });
+        console.log(ids)
+        alert(table.rows('.selected').data().length + ' row(s) selected');
+    });
+});
+</script>
+{% endblock %}

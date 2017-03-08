@@ -1,0 +1,38 @@
+{% extends "base.html" %} {% load static %} {% load custom_filter %} {% block content %}
+<div id="container">
+    <form method="post">
+        {% csrf_token %}
+        <div id="device-id">
+            <div id="device-id-left">Dept ID:</div>
+            <div id="device-id-right">{{ form.errors.dept_id }} 
+                <input type="text" value="{{ dept.dept_id }}" name="dept_id">
+            </div>
+        </div>
+        <div id="device-name">
+            <div id="device-name-left">Dept Parent:</div>
+            <div id="device-name-right">
+                <select id="dept_parent" name="dept_parent">
+                    <option value="">Null</option>
+                    {% for dept in all_dept %}
+                    <option value="{{ dept.dept_id }}">{{ dept.deptname }}</option>
+                    {%endfor %}
+                </select>
+            </div>
+        </div>
+        <div id="dept">
+            <div id="dept-left">Dept Name:</div>{{ form.errors.deptname }}
+            <div id="dept-right">
+                <input type="text" value="{{ dept.deptname }}" name="deptname">
+            </div>
+        </div>
+        <div id="adddevice-user">
+            <div id="adddevice-user-left">Manager:</div>
+            <div id="adddevice-user-right">
+                <input type="text" value="{{ dept.manager }}" name="manager">
+            </div>
+        </div>
+        <div id="adddevice-save"> <button type="sumit" name="save"  id="edit_button"><i class="fa fa-floppy-o" aria-hidden="true"></i>
+ Save</button></div>
+    </form>
+</div>
+{% endblock %}
