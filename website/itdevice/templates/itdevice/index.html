@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load custom_filter %}
+{% block content %}
+        <table  id="myTable" class="table tablesorter" cellspacing="" cellpadding="" border="1" width="100%" style="margin-top: 85px;">
+        <thead>
+             <tr class="header">
+              <th style="width:5%;">Type</th>
+              <th style="width:5%;">Assets lable</th>
+              <th style="width:47%;">Device name</th>
+              <th style="width:15%;">Date</th>
+              <th style="width:25%;">Time duration</th>
+              <th style="width:3%;">Dept</th>
+              <th style="width:1%;">User name</th>
+            </tr>
+        </thead>
+        <tbody>
+              {% for itdevice in all_device %}
+              <tr style="cursor:pointer" onMouseOver="HighLight(this);" onMouseOut="UnHighLight(this);" onclick="Select(this);">
+                <td>{{ itdevice.material.type.typename }}<input type = "hidden" value = "false" /></td>
+                <td>{{ itdevice.device_id }}</td>
+                <td>{{ itdevice.material.materialname }}</td>
+                <td>{{ itdevice.pur_date|date:"Y-m-d" }}</td>
+                <td>{{ itdevice.pur_date|tinh }}</td>
+                <td>{{ itdevice.dept.deptname }}</td>
+                <td>{{ itdevice.user_name }}</td>
+              {% endfor %}
+               </tr>
+        </tbody>
+        </table>
+{% endblock %}

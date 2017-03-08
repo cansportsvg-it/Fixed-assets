@@ -1,0 +1,22 @@
+{% extends "base.html" %} {% block content %}
+<div id="container">
+    <form method="post">
+        {% csrf_token %} {{ form }} {% for type in all_type %}
+        <div id="device-id">
+            <div id="device-id-left">Type ID:</div>
+            <div id="device-id-right">
+                <input type="text" value="{{ type.type_id }}" name="type_id" readonly>
+            </div>
+        </div>        
+        <div id="dept">
+            <div id="dept-left">Type Name:</div>
+            <div id="dept-right">
+                <input type="text" value="{{ type.typename }}" name="typename">
+            </div>
+            {% endfor %}
+        </div>        
+        <div id="adddevice-save"> <button type="sumit" name="save"  id="edit_button"><i class="fa fa-floppy-o" aria-hidden="true"></i>
+ Save</button></div>
+    </form>
+</div>
+{% endblock %}

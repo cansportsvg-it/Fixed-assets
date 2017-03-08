@@ -1,0 +1,79 @@
+{% extends "base.html" %} {% load static %} {% block content %}
+<div id="container">
+    <form method="post">
+        {% csrf_token %} {{ form }} {% for itdevice in all_device %}
+        <div id="device-id">
+            <div id="device-id-left">Device id:</div>
+            <div id="device-id-right">
+                <input type="text" value="{{ itdevice.device_id }}" name="device_id" readonly>{% endfor %}
+            </div>
+        </div>
+        <div id="device-name">
+            <div id="device-name-left">Device Name:</div>
+            <div id="device-name-right">
+                <select id="material" name="material" style="width:100%;">
+                    {% for material in all_material %} {% for itdevice in all_device %} {% if material.material_id == itdevice.material.material_id %}
+                    <option value="{{ material.material_id }}" selected>{{ material.materialname }}</option>
+                    {%else%}
+                    <option value="{{ material.material_id }}">{{ material.materialname }}</option>
+                    {% endif %} {% endfor %} {% endfor %}
+                </select>
+            </div>
+            <div id="device-name-button">
+                <button type="submit" onclick="location.href='/itdevice/addmaterial/'" name="add_material" class="button2">
+                    <img src="{% static 'images/add.png' %}" />
+                </button>
+                <button type="submit" name="edit_material" class="button2">
+                    <img src="{% static 'images/edit.png' %}" />
+                </button>
+                <button type="submit" name="delete_material" class="button2">
+                    <img src="{% static 'images/delete2.png' %}" />
+                </button>
+            </div>
+        </div>
+        <div id="dept">
+            <div id="dept-left">Dept:</div>
+            <div id="dept-right">
+                <select name="dept" style="width:100%;">
+                    {% for dept in all_dept %} {% for itdevice in all_device %} {% if dept.dept_id == itdevice.dept.dept_id %}
+                    <option value="{{ dept.dept_id }}" selected>{{ dept.deptname }}</option>
+                    {%else%}
+                    <option value="{{ dept.dept_id }}">{{ dept.deptname }}</option>
+                    {% endif %} {% endfor %} {% endfor %}
+                </select>
+            </div>
+            <div id="dept-button">
+                <button type="submit" onclick="location.href='/itdevice/addmaterial/'" name="add_dept" class="button2">
+                    <img src="{% static 'images/add.png' %}" />
+                </button>
+                <button type="submit" name="edit_dept" class="button2">
+                    <img src="{% static 'images/edit.png' %}" />
+                </button>
+                <button type="submit" name="delete_dept" class="button2">
+                    <img src="{% static 'images/delete2.png' %}" />
+                </button>
+            </div>
+        </div>
+        <div id="adddevice-date">
+            <div id="adddevice-date-left">Date:</div>
+            {% for itdevice in all_device %}
+            <div id="adddevice-date-right">
+                <input type="text" value="{{ itdevice.pur_date|date:'m/d/Y' }}" name="pur_date" id="pur_date">
+            </div>
+        </div>
+        <div id="adddevice-user">
+            <div id="adddevice-user-left">User:</div>
+            <div id="adddevice-user-right">
+                <input type="text" value="{{ itdevice.user_name }}" name="user_name">
+            </div>
+            {% endfor %}
+        </div>
+        <div id="outer">
+                <div class="inner"><button class="btn btn-default" type="sumit" name="save"  id="edit_button"><i class="fa fa-floppy-o" aria-hidden="true"></i>
+                 Save</button></div>
+                 <div class="inner"> <button class="btn btn-default" type="button" id="cancel_button" onclick="javascript:history.go(-1);"><i class="fa fa-floppy-o" aria-hidden="true" ></i>
+                 Cancel</button></div>
+        </div>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/html">
+{% load static %}
+{% load custom_filter %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+<link rel="stylesheet" href="{% static 'css/style2.css' %}">
+
+<script>
+    var isNav = navigator.appName == "Netscape";
+    if(isNav);
+    else alert('Your current browser does not support this website');
+</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="{% static 'js/scripts.js' %}"></script>
+<script src="{% static 'js/search.js' %}"></script>
+<script src="{% static 'js/backtotop.js' %}"></script>
+	<head>
+    <title>Fixed Assets Quick Search Tool</title>
+    <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap.no-icons.min.css" rel="stylesheet">
+	</head>
+	<body>
+<section class="container">
+  <div class="head" >
+      <img src="{% static 'images/logo.png' %}" alt="Logo" style="width:150px; height:70px;" />
+  </div>
+      <ul id="nav">
+          <li><a href="/itdevice/">Home</a></li>
+          <li><a href="#">Department filter</a>
+              <ul>
+                <li><a href="/itdevice/">ALL</a>
+                    {% for dept in deptparent %}
+                        <li><a href="/itdevice/dept/{{dept.dept_id}}">{{dept.deptname}}</a>
+
+                            <ul>
+                                {% for dept in dept.dept_id|getChilds %}
+                                <li><a href="/itdevice/dept/{{dept.dept_id}}">{{dept.deptname}}</a></li>
+                                {% endfor %}
+                            </ul>
+                        </li>
+                    {% endfor %}
+                </li>
+              </ul>
+          </li>
+          <div class="search">
+            <input type="search" id="myInput" class="light-table-filter" data-table="blue" placeholder="Search..." />
+          </div>
+      </ul>
+
+    <table class="blue">
+		<thead>
+            <tr class="header">
+                <th style="width:10%;">Type</th>
+                <th style="width:15%;">Assets lable</th>
+                <th style="width:40%;">Device name</th>
+                <th style="width:10%;">Pur Date</th>
+                <th style="width:10%;">Dept</th>
+                <th style="width:15%;">User name</th>
+            </tr>
+        </thead>
+        <tbody>
+
+              {% for itdevice in all_device %}
+              <tr>
+                <td>{{ itdevice.material.type.typename }}</td>
+                <td>{{ itdevice.device_id }}</td>
+                <td>{{ itdevice.material.materialname }}</td>
+                <td>{{ itdevice.pur_date }}</td>
+                <td>{{ itdevice.dept.deptname }}</td>
+                <td>{{ itdevice.user }}</td>
+              {% endfor %}
+               </tr>
+        </tbody>
+	</table>
+</section>
+    <a href="#0" class="cd-top">Top</a>
+	</body>
+</html>

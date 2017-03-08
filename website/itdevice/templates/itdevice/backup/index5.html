@@ -1,0 +1,88 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="{% static 'js/scripts.js' %}" ></script>
+<div id="menu">
+  	<ul>
+        <li><a href="/itdevice/">Home</a></li>
+        <li><a href="#">Dept</a>
+            <ul class="sub-menu">
+            {% for dept in all_dept %}
+                <li><a href="/itdevice/dept/{{ dept.dept_id }}/">{{dept.deptname}}</a></li>            {% endfor %}
+            </ul>
+        </li>
+        <li><a href="#">Contact</a></li>
+        <li>
+          <input type="text" id="myInput" class="light-table-filter" onkeyup="myFunction()" placeholder="Search for assets lable.." title="Type in a name" />
+        </li>
+    </ul>
+    
+</div>
+<div>
+<select name="forma" onchange="location = this.value;" selectedIndex = "this.value">
+<option value="ALL">ALL</option>
+{% for dept in all_dept %}
+<option value="/itdevice/dept/{{ dept.dept_id }}/">{{dept.deptname}}</option>
+ {% endfor %}
+</select>
+</div>
+<table id="myTable" class="blue">
+  <thead>
+     <tr class="header">
+    <th style="width:10%;">Type</th>
+    <th style="width:20%;">Assets lable</th>
+    <th style="width:40%;">Device name</th>
+    <th style="width:10%;">Dept</th>
+    <th style="width:20%;">User name</th>
+  </tr>
+  </thead>
+  <tbody>
+    {% for itdevice in all_device %}
+  <tr>
+    <td>{{ itdevice.material.type.typename }}</td>
+    <td>{{ itdevice.device_id }}</td>
+    <td>{{ itdevice.material.materialname }}</td>
+    <td>{{ itdevice.dept.deptname }}</td>
+    <td>{{ itdevice.user }}</td>
+  {% endfor %}
+  </tbody>
+</table>
+<section class="container">
+
+	<h2>Light Javascript Table Filter</h2>
+
+	<input type="search" class="light-table-filter" data-table="order-table" placeholder="Filter">
+
+	<table class="order-table table">
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Email</th>
+				<th>Phone</th>
+				<th>Price</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>John Doe</td>
+				<td>john.doe@gmail.com</td>
+				<td>0123456789</td>
+				<td>99</td>
+			</tr>
+			<tr>
+				<td>Jane Vanda</td>
+				<td>jane@vanda.org</td>
+				<td>9876543210</td>
+				<td>349</td>
+			</tr>
+			<tr>
+				<td>Alferd Penyworth</td>
+				<td>alfred@batman.com</td>
+				<td>6754328901</td>
+				<td>199</td>
+			</tr>
+		</tbody>
+	</table>
+
+</section>
+<h1 class="up scrollMore">&uarr; UP &uarr;</h1>

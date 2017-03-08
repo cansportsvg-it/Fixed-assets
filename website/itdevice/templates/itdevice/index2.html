@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% load custom_filter %}
+{% block content %}
+    <div>
+      <div id="btn-group">
+          <button type="button" onclick="location.href='/itdevice/adddevice/'" id="add_button" class="btn btn-default">Add</button>
+          <button type="button" id="edit_button" disabled>Edit</button>
+          <button type="button" id="delete_button" disabled>Delete</button>
+      </div>
+            <div id="search" class="search">
+            <input type="search" id="myInput" class="light-table-filter" data-table="blue" placeholder="Search..." />
+          </div>
+      <table class="blue" id="table" cellspacing="0" cellpadding="0" border="0" width="100%">
+		<thead>
+             <tr class="header">
+              <th style="width:10%;">Type</th>
+              <th style="width:20%;">Assets lable</th>
+              <th style="width:35%;">Device name</th>
+              <th style="width:10%;">Date(YYYY-mm-dd)</th>
+              <th style="width:10%;">Time duration</th>
+              <th style="width:10%;">Dept</th>
+              <th style="width:15%;">User name</th>
+            </tr>
+        </thead>
+        <tbody>
+
+              {% for itdevice in all_device %}
+              <tr style="cursor:pointer" onMouseOver="HighLight(this);" onMouseOut="UnHighLight(this);" onclick="Select(this);">
+                <td>{{ itdevice.material.type.typename }}<input type = "hidden" value = "false" /></td>
+                <td>{{ itdevice.device_id }}</td>
+                <td>{{ itdevice.material.materialname }}</td>
+                <td>{{ itdevice.pur_date|date:"Y-m-d" }}</td>
+                <td>{{ itdevice.pur_date|tinh }}</td>
+                <td>{{ itdevice.dept.deptname }}</td>
+                <td>{{ itdevice.user_name }}</td>
+              {% endfor %}
+               </tr>
+        </tbody>
+	</table>
+      </div>
+<script type="text/javascript">
+    $(document).ready(function () {
+    var table = $('#table').DataTable();
+
+    $('#table tbody').on('click', 'tr', function () {
+        $(this).toggleClass('selected');
+    });
+
+    $('#edit_button').click(function () {
+        var ids = $.map(table.rows('.selected').data(), function (item) {
+            return item[0]
+        });
+        console.log(ids)
+        alert(table.rows('.selected').data().length + ' row(s) selected');
+    });
+});
+</script>
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends "base.html" %} {% block content %}
+<div class="centerBox" id="deleteConfirm">
+    <form method="post">
+        {% csrf_token %}
+        <div id="deleteConfirm-h1">
+            <input type='hidden' name='csrfmiddlewaretoken' value='iZ1FnHfMxX7cufcU35j0U5kBNjVlCo9tdZfwX1rGwl1SgKpiUCC08KT0VFSgG0gJ' />
+            <h1> Are you sure want to delete ?</h1>
+        </div>
+        <div id="deleteConfirm-down" class="centerBox">
+            <button class="btn btn-default" id="buttonYes" type="submit" name="yes"><i class="fa fa-thumbs-up" aria-hidden="true"></i> Yes</button>
+            <div class="inner"> <button class="btn btn-default" type="button" id="cancel_button" onclick="javascript:history.go(-1);"><i class="fa fa-floppy-o" aria-hidden="true" ></i>
+                 Cancel</button></div>
+        </div>
+    </form>
+</div>
+{% endblock %}

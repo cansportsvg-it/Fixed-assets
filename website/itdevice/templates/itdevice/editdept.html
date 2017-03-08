@@ -1,0 +1,41 @@
+{% extends "base.html" %} {% block content %}
+<div id="container">
+    <form method="post">
+        {% csrf_token %} {{ form }} {% for dept in filter_dept %}
+        <div id="device-id">
+            <div id="device-id-left">Dept ID:</div>
+            <div id="device-id-right">
+                <input type="text" value="{{ dept.dept_id }}" name="dept_id" readonly>
+            </div>
+        </div>
+        <div id="device-name">
+            <div id="device-name-left">Dept Parent:</div>
+            <div id="device-name-right">
+                <select id="dept_parent" name="dept_parent">
+            {% if dept.dept_id == dept.dept_id %}
+        <option value="{{ dept.dept_parent }}" selected>{{ dept.dept_parent }}</option>
+        {% for dept in all_dept %}
+        <option value="{{ dept.dept_id }}">{{ dept.deptname }}</option>        
+        {%endfor %} 
+        {% endif %} 
+        </select>
+            </div>
+        </div>
+        <div id="dept">
+            <div id="dept-left">Dept Name:</div>
+            <div id="dept-right">
+                <input type="text" value="{{ dept.deptname }}" name="deptname" >
+            </div>
+        </div>
+        <div id="adddevice-user">
+            <div id="adddevice-user-left">Manager:</div>
+            <div id="adddevice-user-right">
+                <input type="text" value="{{ dept.manager }}" name="manager">
+            </div>
+        </div>
+        {%endfor %}    
+        <div id="adddevice-save"> <button type="sumit" name="save"  id="edit_button"><i class="fa fa-floppy-o" aria-hidden="true"></i>
+ Save</button></div>
+    </form>
+</div>
+{% endblock %}

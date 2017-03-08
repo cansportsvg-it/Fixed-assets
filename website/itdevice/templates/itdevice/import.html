@@ -1,0 +1,31 @@
+{% extends "base.html" %} {% block content %}
+<form method="post">
+    {% csrf_token %} {{ form }} 
+    
+    <p>        
+        <label>Inventory name:</label>
+        <select id="dept_parent" name="i">            
+        {% for inventory in all_inventory %}
+        <option value="{{ inventory.i_id }}">{{ inventory.i_name_cn }}</option>        
+        {%endfor %} 
+        </select>
+    </p> 
+    <p>        
+        <label>Inventory Type:</label>
+        <select id="dept_parent" name="i_type">            
+        {% for inventorytype in all_inventory_type %}
+        <option value="{{ inventorytype.i_type_id }}">{{ inventorytype.i_type_name }}</option>        
+        {%endfor %} 
+        </select>
+    </p> 
+    <p> 
+    <input type="file" id="file" name="file"><span id="file_path"> No file uploaded yet</span>
+    </p> 
+    <input type="submit" name="sumit" value="Save">
+</form>
+<script type="text/javascript">
+ $('#file').change(function(){
+    var fileName = $(this).val();
+    $('#file_path').text(fileName);
+});</script>
+{% endblock %}

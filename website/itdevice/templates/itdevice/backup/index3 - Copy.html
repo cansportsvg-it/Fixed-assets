@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+<script src="{% static 'js/scripts.js' %}"></script>
+<div id="menu">
+  	<ul>
+        <li><a href="/itdevice/">Home</a></li>
+        <li><a href="#">Dept</a>
+            <ul class="sub-menu">        
+            {% for dept in all_dept %}
+                <li><a href="/itdevice/dept/{{ dept.dept_id }}/">{{dept.deptname}}</a></li>            {% endfor %}
+            </ul>
+        </li>
+        <li><a href="#">Contact</a></li>
+    </ul>
+</div>
+<div>
+  <p>&nbsp;  </p>
+  <p>
+    <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for assets lable.." title="Type in a name">
+  </p>
+</div>
+<div>
+<table cellspacing="0" id="myTable">
+  <tr class="header">
+    <th style="width:10%;">Type</th>
+    <th style="width:20%;">Assets lable</th>
+    <th style="width:40%;">Device name</th>
+    <th style="width:10%;">Dept</th>
+    <th style="width:10%;">User name</th>
+  </tr>
+  {% for itdevice in all_device %}
+  <tr>
+    <td>{{ itdevice.material.type.typename }}</td>
+    <td>{{ itdevice.device_id }}</td>
+    <td>{{ itdevice.material.materialname }}</td>
+    <td>{{ itdevice.dept.deptname }}</td>
+    <td>{{ itdevice.user }}</td>
+  {% endfor %}
+</table>
+
+    <div>
+<p>
+            <label for="search"> <strong>Search Box</strong>
+            </label> <input type="text" id="search" />
+</p>
+<table width="40%" id="searchTable" border="1">
+            <tbody>
+                        <tr bgcolor="#C0C0C0">
+                                    <th width="7%" align="left">#</th>
+                                    <th width="11%" align="left">Name</th>
+                                    <th width="11%" align="left">Company</th>
+                                    <th width="11%" align="left">Designation</th>
+                        </tr>
+                        <tr>
+                                    <td width="7%" style="font-size: 11pt;">1</td>
+                                    <td width="11%" style="font-size: 11pt;">Sandeep</td>
+                                    <td width="11%" style="font-size: 11pt;">Infosys</td>
+                                    <td width="11%" style="font-size: 11pt;">Developer</td>
+                        </tr>
+                        <tr>
+                                    <td width="7%" style="font-size: 11pt;">2</td>
+                                    <td width="11%" style="font-size: 11pt;">Pramod</td>
+                                    <td width="11%" style="font-size: 11pt;">TCS</td>
+                                    <td width="11%" style="font-size: 11pt;">Manager</td>
+                        </tr>
+                        <tr>
+                                    <td width="7%" style="font-size: 11pt;">3</td>
+                                    <td width="11%" style="font-size: 11pt;">Narendra</td>
+                                    <td width="11%" style="font-size: 11pt;">Accenture</td>
+                                    <td width="11%" style="font-size: 11pt;">Technical Lead</td>
+                        </tr>
+                        <tr>
+                                    <td width="7%" style="font-size: 11pt;">4</td>
+                                    <td width="11%" style="font-size: 11pt;">Tarun</td>
+                                    <td width="11%" style="font-size: 11pt;">Metacube</td>
+                                    <td width="11%" style="font-size: 11pt;">Business Analyst</td>
+                        </tr>
+                        <tr>
+                                    <td width="7%" style="font-size: 11pt;">5</td>
+                                    <td width="11%" style="font-size: 11pt;">Manish</td>
+                                    <td width="11%" style="font-size: 11pt;">Wipro</td>
+                                    <td width="11%" style="font-size: 11pt;">QA Engineeer</td>
+                        </tr>
+                        <tr>
+                                    <td width="7%" style="font-size: 11pt;">6</td>
+                                    <td width="11%" style="font-size: 11pt;">Ravi</td>
+                                    <td width="11%" style="font-size: 11pt;">Satyam</td>
+                                    <td width="11%" style="font-size: 11pt;">Sales Manager</td>
+                        </tr>
+                        <tr>
+                                    <td width="7%" style="font-size: 11pt;">7</td>
+                                    <td width="11%" style="font-size: 11pt;">Bhawani</td>
+                                    <td width="11%" style="font-size: 11pt;">HCL</td>
+                                    <td width="11%" style="font-size: 11pt;">HR Manager</td>
+                        </tr>
+                        <tr>
+                                    <td width="7%" style="font-size: 11pt;">8</td>
+                                    <td width="11%" style="font-size: 11pt;">Yashpal</td>
+                                    <td width="11%" style="font-size: 11pt;">Nestle</td>
+                                    <td width="11%" style="font-size: 11pt;">Vice President</td>
+                        </tr>
+                        <tr>
+                                    <td width="7%" style="font-size: 11pt;">9</td>
+                                    <td width="11%" style="font-size: 11pt;">Akhilesh</td>
+                                    <td width="11%" style="font-size: 11pt;">Hero Honda</td>
+                                    <td width="11%" style="font-size: 11pt;">Delivery Manager</td>
+                        </tr>
+                        <tr>
+                                    <td width="7%" style="font-size: 11pt;">10</td>
+                                    <td width="11%" style="font-size: 11pt;">Anand</td>
+                                    <td width="11%" style="font-size: 11pt;">Tech Mahindra</td>
+                                    <td width="11%" style="font-size: 11pt;">IT Manager</td>
+                        </tr>
+            </tbody>
+</table>
+</div>
+
+</div>
+</head></body>
+</html>

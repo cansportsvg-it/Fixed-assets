@@ -1,0 +1,45 @@
+{% extends "base.html" %} {% load static %} {% block content %}
+<div id="container">
+    <form method="post">
+        {% csrf_token %} {{ form }} {% for material in all_material %}
+        <div id="device-id">
+            <div id="device-id-left">Material ID:</div>
+            <div id="device-id-right">
+                <input type="text" value="{{ material.material_id }}" name="material_id" readonly>
+            </div>
+        </div>
+        <div id="device-name">
+            <div id="device-name-left">Material Name:</div>
+            <div id="device-name-right">
+                <input type="text" value="{{ material.materialname }}" name="materialname" style="width:100%;">
+            </div>
+            {%endfor %}
+        </div>
+        <div id="dept">
+            <div id="dept-left">Type:</div>
+            <div id="dept-right">
+                <select name="type" style="width:100%;">
+                    {% for type in all_type %} {% for material in all_material %} {% if type.type_id == material.type.type_id %}
+                    <option value="{{ type.type_id }}" selected>{{ type.typename }}</option>
+                    {%else%}
+                    <option value="{{ type.type_id }}">{{ type.typename }}</option>
+                    {% endif %} {% endfor %} {% endfor %}
+                </select>
+            </div>
+            <div id="dept-button">
+                <button type="submit" onclick="location.href='/itdevice/addmaterial/'" name="add_type" class="button2">
+                    <img src="{% static 'images/add.png' %}" />
+                </button>
+                <button type="submit" name="edit_type" class="button2">
+                    <img src="{% static 'images/edit.png' %}" />
+                </button>
+                <button type="submit" name="delete_type" class="button2">
+                    <img src="{% static 'images/delete2.png' %}" />
+                </button>
+            </div>
+        </div>
+        <div id="adddevice-save"> <button type="sumit" name="save"  id="edit_button"><i class="fa fa-floppy-o" aria-hidden="true"></i>
+ Save</button></div>
+    </form>
+</div>
+{% endblock %}
