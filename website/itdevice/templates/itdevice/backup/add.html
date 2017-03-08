@@ -1,0 +1,79 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+{% load static %}
+<head>
+<title>test web</title>
+<meta http-equiv="content-type" content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" type="text/css" href="{% static 'css/layout.css' %}" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="{% static 'js/test1.js' %}" ></script>
+
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/resources/demos/style.css">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script>
+  $( function() {
+    $( "#datepicker" ).datepicker();
+  } );
+  </script>
+</head>
+<body>
+<form action="" method="post">
+    {% csrf_token %}
+    {% include 'itdevice/forms-template.html' %}
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button type="submit" class="but success">sumit</button>
+        </div>
+    </div>
+</form>
+
+
+<div id="container">
+<div id="header"><h1>header</h1></div>
+  <div id="wrapper">
+    <div id="content">
+      <table class="display" id="example" cellspacing="0" cellpadding="0" border="0" width="100%">
+		<thead>
+             <tr class="header">
+              <th style="width:10%;">Type</th>
+              <th style="width:20%;">Assets lable</th>
+              <th style="width:40%;">Device name</th>
+              <th style="width:10%;">Dept</th>
+              <th style="width:20%;">User name</th>
+            </tr>
+        </thead>
+        <tbody>
+
+              {% for itdevice in all_device %}
+              <tr>
+                <td>{{ itdevice.material.type.typename }}</td>
+                <td>{{ itdevice.device_id }}</td>
+                <td>{{ itdevice.material.materialname }}</td>
+                <td>{{ itdevice.pur_date }}</td>
+                <td>{{ itdevice.dept.deptname }}</td>
+                <td>{{ itdevice.user }}</td>
+              {% endfor %}
+               </tr>
+        </tbody>
+	</table>
+      </div>
+  </div>
+  <div id="navigation">
+    <p><strong>Date range Filter</strong></p>
+    <ul>
+      <li><a href="http://www.free-css.com/">Free CSS Templates</a></li>
+      <li><a href="http://www.free-css.com/free-css-layouts.php">Free CSS Layouts</a></li>
+    </ul>
+  </div>
+  <div id="extra">
+    <p><strong>Dept Filter</strong></p>
+    <p>sit malesuada lacus pellus parturpiscing. Pellenterdumat maecenatoque cras a magna nibh et quis diam ames et. Laoremvolutpat ac dolor eget eget temper lacus vestibus velit lacus venean. Magnaipsum tellus morbi leo aliquat nulla convallis pellentesque.</p>
+  </div>
+  <div id="footer">
+    <p>Footer</p>
+  </div>
+</div>
+</body>
+</html>

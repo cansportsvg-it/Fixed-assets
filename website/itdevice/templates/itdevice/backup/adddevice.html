@@ -1,0 +1,137 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns="http://www.w3.org/1999/html">
+{% load static %}
+{% load custom_filter %}
+<head>
+<title>Fixed Assets Quick Search Tool</title>
+<meta http-equiv="content-type" content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/layout.css' %}" />
+<link rel="stylesheet" type="text/css" href="{% static 'css/popup.css' %}" />
+<link rel="stylesheet" type="text/css" href="{% static 'css/menu.css' %}" />
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="{% static 'js/popup.js' %}" ></script>
+<script>
+    var isNav = navigator.appName == "Netscape";
+    if(isNav);
+    else alert('Your current browser does not support this website');
+</script>
+
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="{% static 'js/scripts.js' %}"></script>
+<script src="{% static 'js/search.js' %}"></script>
+<script src="{% static 'js/backtotop.js' %}"></script>
+<script>
+  $(function() {
+$( "#datepicker" ).datepicker();
+});
+</script>
+</head>
+<body>
+<div id="add">
+<form method="post">
+    {% csrf_token %}
+    {{ form }}
+  Device id:<br>
+  <input type="text" name="device_id"><br>
+      <label>IT device ID</label>
+    <select  name="material">
+    {% for material in all_material  %}
+      <option value="{{ material.material_id }}">{{ material.materialname }}</option>
+    {% endfor %}
+    </select>
+  <label >Dept</label>
+   <select  name="dept">
+  {% for dept in all_dept  %}
+     <option value="{{ dept.dept_id }}">{{ dept.deptname }}</option>
+  {% endfor %}
+     </select>
+  <p>Date: <input type="date" name="pur_date"></p>
+  user:<br>
+  <input type="text" name="user">
+  <input type="submit" name="sumit" value="Insert device">
+</form>
+
+
+</div>
+
+<div id="container">
+<div id="header"><h1>header</h1></div>
+  <div id="wrapper">
+    <div id="content">
+        <div id="button">
+      <div class="btn-group">
+          <button type="button" id="add_button" class="btn btn-default">Add</button>
+          <button type="button" id="edit_button">Edit</button>
+          <button type="button" onclick="location.href='/delete/{{ device_id }}'" class="btn btn-default">Delete</button>
+      </div>
+            <div class="search">
+            <input type="search" id="myInput" class="light-table-filter" data-table="blue" placeholder="Search..." />
+          </div>
+      <table class="blue" id="example" cellspacing="0" cellpadding="0" border="0" width="100%">
+		<thead>
+             <tr class="header">
+              <th style="width:10%;">Type</th>
+              <th style="width:20%;">Assets lable</th>
+              <th style="width:35%;">Device name</th>
+              <th style="width:10%;">Date</th>
+              <th style="width:10%;">Dept</th>
+              <th style="width:15%;">User name</th>
+            </tr>
+        </thead>
+        <tbody>
+
+              {% for itdevice in all_device %}
+              <tr>
+                <td>{{ itdevice.material.type.typename }}</td>
+                <td>{{ itdevice.device_id }}</td>
+                <td>{{ itdevice.material.materialname }}</td>
+                <td>{{ itdevice.pur_date }}</td>
+                <td>{{ itdevice.dept.deptname }}</td>
+                <td>{{ itdevice.user }}</td>
+              {% endfor %}
+               </tr>
+        </tbody>
+	</table>
+      </div>
+  </div>
+  </div>
+  <div id="navigation">
+    <p><strong>Date range Filter</strong></p>
+      <form action="">
+    <p>Start Date: <input type="date" name="start_date"></p>
+    <p>End Date Date: <input type="date" name="end_date"></p>
+    <button type="button" onclick="location.href='/itdevice/date/'+start_date.value" class="btn btn-default">Date Filter</button>
+
+    </form>
+  </div>
+  <div id="extra">
+    <p><strong>Dept Filter</strong></p>
+    <div id="menu">
+                <ul class="main-menu" id="main-menu">
+					 {% for dept in deptparent %}
+                    <li>
+                        <a href="/itdevice/dept/{{dept.dept_id}}"><i class="fa fa-sitemap fa-3x"></i> {{dept.deptname}}{% if dept.dept_id|hasChilds %}<span class="fa arrow"></span>{% endif %}</a>
+                        <ul class="sub-menu">
+                            {% for dept in dept.dept_id|getChilds %}
+                            <li>
+                                <a href="/itdevice/dept/{{dept.dept_id}}">{{dept.deptname}}</a>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                      </li>
+                     {% endfor %}
+                </ul>
+
+            </div>
+  </div>
+  <div id="footer">
+    <p>Footer</p>
+  </div>
+</div>
+    <a href="#0" class="cd-top">Top</a>
+</body>
+</html>

@@ -1,0 +1,21 @@
+{% extends "base.html" %} {% load static %} {% load custom_filter %} {% block content %}
+<div id="container">
+    <form method="post">
+        {% csrf_token %} 
+        <div id="device-id">
+            <div id="device-id-left">Type ID:</div>
+            <div id="device-id-right">{{ form.errors.type_id }} 
+                <input type="text" name="type_id">
+            </div>
+        </div>        
+        <div id="dept">
+            <div id="dept-left">Type Name:</div>{{ form.errors.typename }} 
+            <div id="dept-right">
+                <input type="text" name="typename">
+            </div>
+        </div>        
+        <div id="adddevice-save"> <button type="sumit" name="save"  id="edit_button"><i class="fa fa-floppy-o" aria-hidden="true"></i>
+ Save</button></div>
+    </form>
+</div>
+{% endblock %}
