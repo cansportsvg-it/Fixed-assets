@@ -1,0 +1,131 @@
+#container{
+	width: 900px;
+	
+}
+#device-id{
+	height: 40px;
+	width: 100%;
+	margin-bottom: 10px;
+	padding-top: 10px;
+}
+#device-id-left{
+	height: 40px;
+	width: 100px;
+	float: left;
+	padding-top: 10px;
+	padding-left:  5px;
+	
+
+}
+#device-id-right{
+	height: 40px;
+	width: 600px;
+	float: left;
+	padding-top: 5px;
+	padding-left: 5px;
+	
+}
+#device-name{
+	height: 40px;
+	width: 100%;
+	margin-bottom: 5px;
+	padding-top: 5px;
+	padding-left: 5px;
+}
+#device-name-left{
+	width: 100px;
+	float: left;
+	padding-top: 5px;
+}
+#device-name-right{
+	width: 350px;
+	float: left;
+	padding-top: 5px;
+	padding-left: 5px;
+}
+#device-name-button{
+	width: 250px;
+	float: left;
+	padding-top: 5px;
+	padding-left: 5px;
+}
+#dept{
+	height: 40px;
+	width: 100%;
+	padding-top: 5px;
+	padding-left: 0px;
+}
+#dept-left{
+	width: 100px;
+	float: left;
+	padding-top: 5px;
+	padding-left: 5px;
+}
+#dept-right{
+	width: 70px;
+	float: left;
+	padding-top: 5px;
+	padding-left: 5px;
+}
+#dept-button{
+	width: 100px;
+	float: left;
+	padding-top: 5px;
+	padding-left: 0px;
+}
+
+
+#adddevice-date{
+	
+	height: 40px;
+	width: 100%;
+	padding-top: 5px;
+	padding-left: 5px;
+}
+#adddevice-date-left{
+	width: 100px;
+	padding-top: 5px;
+	padding-left: 0px;
+	
+	float: left;
+}
+#adddevice-date-right{
+	width: 600px;
+	float: left;
+	padding-top: 5px;
+	padding-left: 5px;
+}
+#adddevice-user{
+	width: 100%;
+	height: 40px;
+	padding-top: 5px;
+	padding-left: 5px;
+}
+#adddevice-user-left{
+	float: left;
+	width: 100px;
+	padding-top: 5px;
+	padding-left: 0px;
+}
+#adddevice-user-right{
+	width: 600px;
+	float: left;
+	padding-top: 5px;
+	padding-left: 5px;
+}
+#adddevice-save{
+	width: 100%;
+	float: left;
+	padding-top: 5px;
+	padding-left: 0px;
+}
+
+
+.button2{
+	 		background-color: Transparent;
+            background-repeat:no-repeat;
+            border: none;
+            cursor:pointer;
+            overflow: hidden;
+            outline:none;
+}
