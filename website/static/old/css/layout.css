@@ -1,0 +1,30 @@
+html,body{margin:0;padding:0}
+body{font: 76% arial,sans-serif;text-align:left}
+p{margin:0 10px 10px}
+a{padding:5px; text-decoration:none; color:#000000;}
+div#header{background-color:#1868f2;text-align:right; font-size: 20px;}
+div#container{text-align:left}
+div#content p{line-height:1.4}
+div#navigation{background:#fffced}
+div#extra{background:#0099ef}
+div#footer{background:#BFBD93;}
+div#footer p{margin:0;padding:5px 10px}
+div#container{width:100%;margin:0 auto}
+div#content{float:right;width:85%}
+div#navigation{float:left;width:15%}
+div#extra{float:left;clear:left;width:15%}
+div#footer{clear:both;width:100%}
+div#btn-group{float:left;width:50%}
+ul.userbar {
+  list-style: none;
+  margin: 0 0 0.5em;
+  padding: 0;
+  height:40px
+}
+ul.userbar li {
+  display: inline;
+}
+
+ul.userbar li a{
+  color: red;
+}
